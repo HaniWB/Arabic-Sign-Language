@@ -1,0 +1,7 @@
+path: C:/Users/hanib/Downloads/Arabic sign language translator.v3i.yolov5pytorch
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 13
+names: ['كلب', 'مرحبا', 'لا', 'شكرا', 'بخير', 'حب', 'أنا', 'أم', 'ابتسامة', 'آسف', 'الأحد', 'نعم', 'أنت']
