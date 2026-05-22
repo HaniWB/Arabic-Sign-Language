@@ -1,0 +1,5 @@
+sign/
+__pycache__/
+*.pyc
+yolov5/runs/
+yolov5/.git/
