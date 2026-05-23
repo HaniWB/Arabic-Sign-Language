@@ -1,4 +1,6 @@
 import os
+import subprocess
+import sys
 from signLanguage.utils.main_utils import decodeImage, encodeImageIntoBase64
 from flask import Flask, request, jsonify, render_template, Response
 from flask_cors import CORS, cross_origin
@@ -6,11 +8,37 @@ from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
 CORS(app)
+webcam_process = None
 
 
 class ClientApp:
     def __init__(self):
         self.filename = "inputImage.jpg"
+
+
+def start_webcam_if_needed():
+    global webcam_process
+    if webcam_process is not None and webcam_process.poll() is None:
+        return False
+
+    webcam_process = subprocess.Popen(
+        [
+            sys.executable,
+            "detect.py",
+            "--weights",
+            "runs/train/exp14/weights/best.pt",
+            "--data",
+            "C:/Users/hanib/Downloads/Arabic sign language translator.v3i.yolov5pytorch/data_arabic.yaml",
+            "--img",
+            "640",
+            "--conf",
+            "0.5",
+            "--source",
+            "0",
+        ],
+        cwd="yolov5",
+    )
+    return True
 
 
 @app.route("/")
@@ -47,9 +75,8 @@ def predictRoute():
 @cross_origin()
 def predictLive():
     try:
-        #os.system("cd yolov5/ && python detect.py --weights best.pt --img 416 --conf 0.5 --source 0")
-        os.system("cd yolov5/ && python detect.py --weights runs/train/exp14/weights/best.pt --data \"C:/Users/hanib/Downloads/Arabic sign language translator.v3i.yolov5pytorch/data_arabic.yaml\" --img 640 --conf 0.5 --source 0")
-        return "Camera starting!!"
+        started = start_webcam_if_needed()
+        return "Camera starting!!" if started else "Camera already running!!"
 
     except ValueError as val:
         print(val)
@@ -58,6 +85,7 @@ def predictLive():
 
 if __name__ == "__main__":
     clApp = ClientApp()
+    start_webcam_if_needed()
     app.run(host='0.0.0.0', port=8080)
 
 
