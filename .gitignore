@@ -1,3 +1,12 @@
 sign/
 __pycache__/
 *.pyc
+
+# YOLO datasets and experiments
+*.v3i.yolov5pytorch/
+runs/
+*.pt
+!exp14/weights/*.pt
+*.onnx
+*.engine
+nul
