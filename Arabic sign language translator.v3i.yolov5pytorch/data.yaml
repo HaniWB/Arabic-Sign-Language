@@ -1,0 +1,7 @@
+path: C:/Users/hanib/Downloads/Arabic-Sign-Language/arabic_sign_language/Arabic sign language translator.v3i.yolov5pytorch
+train: train/images
+val: valid/images
+test: test/images
+
+nc: 13
+names: ['Dog', 'Hello', 'No', 'Thanks', 'fine', 'love', 'me', 'mother', 'smile', 'sorry', 'sunday', 'yes', 'you']

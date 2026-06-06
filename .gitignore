@@ -4,6 +4,7 @@ __pycache__/
 
 # YOLO datasets and experiments
 *.v3i.yolov5pytorch/
+!Arabic sign language translator.v3i.yolov5pytorch/
 runs/
 *.pt
 !exp14/weights/*.pt
