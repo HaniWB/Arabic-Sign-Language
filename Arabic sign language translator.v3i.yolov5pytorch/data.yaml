@@ -1,4 +1,5 @@
-path: C:/Users/hanib/Downloads/Arabic-Sign-Language/arabic_sign_language/Arabic sign language translator.v3i.yolov5pytorch
+path: E:/Arabic-Sign-Language-1/Arabic sign language translator.v3i.yolov5pytorch
+
 train: train/images
 val: valid/images
 test: test/images
